@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class BookActivity extends AppCompatActivity {
 
-    //to avoid errors while typing the key value each time create a constant and use it
+    //to avoid errors while typing the key value each time create a constant
     public static final String BOOK_ID_KEY = "bookId";
 
     private TextView txtViewBookName, txtViewAuthor, txtViewPages, txtViewLongDesc;
@@ -28,20 +28,21 @@ public class BookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book);
 
-        initializeViews ();                 //after initializing the views, now get the book data to fill the info. lets hard code/ create the book
+        //call the initailze method to initialize the views
+        initializeViews ();                
 
-        // GET THE DATA FROM RECYCLER VIEW IN HERE         the same list of books should be shown here but in different layout format
+        // get the intent from the parent activity   
 
         Intent intent = getIntent();
-        if (null != intent){                    //just making sure its not null
-            int bookId = intent.getIntExtra(BOOK_ID_KEY,-1);           //using the default value because you know that none of the input is going to have -1 as their value
-                                                                                   //and in case intent is not able to retrieve the bookid it will use the default value
-             if (bookId != -1){                                                     //JUST SECURITY CHECKS/ VALIDATION, MAKING SURE THE INTENT DOESN'T GET NULL
-                Book inComingBook = UtilsDatabase.getInstance(this).getBookId(bookId);  //checking to see if book id is not default, after check to see if incoming book is not null and finally set book
+        if (null != intent){                    
+            int bookId = intent.getIntExtra(BOOK_ID_KEY,-1);          //and in case intent is not able to retrieve the bookid it will use the default value
+                                                                                
+             if (bookId != -1){                                                    
+                Book inComingBook = UtilsDatabase.getInstance(this).getBookId(bookId);  
                     if (null != inComingBook){
 
-                        setData (inComingBook);                                     //create method to set data to retrieve all of the info from the hard coded book object using getters
-                        //setData (book);
+                        //call the methods here
+                        setData (inComingBook);                                    
 
                         handleAlreadyRead(inComingBook);
                         handleWantToReadBooks(inComingBook);
@@ -52,7 +53,7 @@ public class BookActivity extends AppCompatActivity {
              }
         }
     }
-    //when user clicks on buttonAddToFavorites button is disable and user is navigated to the favorites list
+    //when user clicks on buttonAddToFavorites button, user is navigated to the favorites list
     private void handleFavoriteBooks(final Book book) {
         ArrayList<Book> wantToReadBooks = UtilsDatabase.getInstance(this).getFavoriteBooks();
 
@@ -85,7 +86,7 @@ public class BookActivity extends AppCompatActivity {
         }
     }
 
-    //when user clicks on buttonAddToCurrReading button is disable and user is navigated to the  list
+    //when user clicks on buttonAddToCurrReading button, user is navigated to the  list
     private void handleCurrentlyReading(final Book book) {
         ArrayList<Book> wantToReadBooks = UtilsDatabase.getInstance(this).getCurrentlyReading();           //create an array list and get the already read books from database
 
@@ -118,7 +119,7 @@ public class BookActivity extends AppCompatActivity {
         }
     }
 
-    //when user clicks on buttonAddAlreadyRead button is disable and user is navigated to the  list
+    //when user clicks on buttonAddAlreadyRead button, user is navigated to the  list
     private void handleWantToReadBooks(final Book book) {
         ArrayList<Book> wantToReadBooks = UtilsDatabase.getInstance(this).getWantToReadBooks();
 
@@ -151,7 +152,7 @@ public class BookActivity extends AppCompatActivity {
         }
     }
 
-    //when user clicks on buttonAddAlreadyRead button is disable and user is navigated to the  list
+    //when user clicks on buttonAddAlreadyRead button, user is navigated to the  list
     private void handleAlreadyRead(final Book book) {
 
         ArrayList<Book> alreadyReadBooks = UtilsDatabase.getInstance(this).getAlreadyReadBooks();
@@ -186,6 +187,7 @@ public class BookActivity extends AppCompatActivity {
     }
 
     //populate the field
+     
     private void setData(Book book) {
         txtViewBookName.setText(book.getName());
         txtViewAuthor.setText(book.getAuthor());
