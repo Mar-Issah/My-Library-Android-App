@@ -8,7 +8,7 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class UtilsDatabase {
-    //make it singleton (one instance class) in the entire application
+    //singleton (one instance class) in the entire application
     private static UtilsDatabase instance;
 
     private static final String ALL_BOOKS_KEY = "all_books";
@@ -20,7 +20,7 @@ public class UtilsDatabase {
     //declare shared preferences, it is an interface
     private SharedPreferences sharedPreferences;
 
-    //singleton method constructor. gets data from shared preference   you need a key- value parameter for the getSharedPreferences method
+    //singleton method constructor. gets data from shared preference 
     private UtilsDatabase(Context context) {
        sharedPreferences =  context.getSharedPreferences("database", Context.MODE_PRIVATE);
 
@@ -40,7 +40,7 @@ public class UtilsDatabase {
         }
         if (null == getAlreadyReadBooks()) {
             editor.putString (ALREADY_READ_BOOKS_KEY, gson.toJson(new ArrayList<Book>()));
-            editor.commit();                                                        //user will add the data to the list them self in application same for the rest
+            editor.commit();                                                       
         }
         if (null == getWantToReadBooks()) {
             editor.putString (WANT_TO_READ_BOOKS_KEY, gson.toJson(new ArrayList<Book>()));
@@ -53,9 +53,9 @@ public class UtilsDatabase {
     }
 
     private void initializeData() {
-        //TODO: add initial data
-
-        ArrayList<Book>books = new ArrayList<>();               //instead of the static arraylist lets create this for the shared preferences
+    
+          //static arraylist for the shared preferences
+        ArrayList<Book>books = new ArrayList<>();             
 
         books.add(new Book(1, "Head First Java", "Bert Bates & Kathy Sierra", 722, "https://s.pdfdrive.com/assets/thumbs/224/224c6bfec6d59734fcd89060d4a821d7.jpg",
                 "A complete learning experience in Java and OOP", "A complete learning experience in Java and OOP. This Book helps you learn the Java language with" +
@@ -169,7 +169,7 @@ public class UtilsDatabase {
                 "A Brain - Friendly Guide", "A  Brain - Friendly Guide"));
 
 
-        //saving books in shared preferences
+        //saving all books in shared preferences
         SharedPreferences.Editor editor = sharedPreferences.edit();
 
          Gson gson = new Gson();
@@ -179,7 +179,7 @@ public class UtilsDatabase {
 
     }
 
-    //this method checks to see if there has not been any instance created before return the instance
+    //this method checks to see if there has not been any instance created
     public static UtilsDatabase getInstance(Context context) {
         if (null != instance) {
             return instance;
@@ -189,7 +189,7 @@ public class UtilsDatabase {
         }
     }
 
-    //retrieve the json file into the get all books array list
+    //retrieve/get  the json file from the list
     public ArrayList<Book> getAllBooks() {
         Gson gson = new Gson();
         Type type = new TypeToken<ArrayList<Book>>(){}.getType();
@@ -301,7 +301,7 @@ public class UtilsDatabase {
         return false;
     }
 
-    // create add methods to remove books when the delete button is clicked
+    // create methods to remove books when the delete button is clicked
     //  clear the old list and refresh it with updated list
     public boolean removeFromAlreadyRead(Book book) {
         ArrayList<Book> books = getAlreadyReadBooks();
@@ -322,15 +322,16 @@ public class UtilsDatabase {
     return false;
     }
 
+   
     public boolean removeFromWantToRead(Book book) {
-        ArrayList<Book> books = getWantToReadBooks();                            // return alreadyReadBooks.remove(book);
-        if (null != books){                                                       // (books.remove(book)) will give errors
+        ArrayList<Book> books = getWantToReadBooks();                            
+        if (null != books){                                                       
             for(Book b: books){
-                if(b.getId() == book.getId()){                                  //so testing equality using id
-                    if(books.remove(b)){                                        //if book can be removed
-                        Gson gson = new Gson();                                 //create a new gson and editor
+                if(b.getId() == book.getId()){                                  
+                    if(books.remove(b)){                                        
+                        Gson gson = new Gson();                                 
                         SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.remove(WANT_TO_READ_BOOKS_KEY);                  //clear the existing already read books and refresh it with a new updated list. when call from the already read books activity
+                        editor.remove(WANT_TO_READ_BOOKS_KEY);                  
                         editor.putString(WANT_TO_READ_BOOKS_KEY, gson.toJson(books));
                         editor.commit();
                         return true;
