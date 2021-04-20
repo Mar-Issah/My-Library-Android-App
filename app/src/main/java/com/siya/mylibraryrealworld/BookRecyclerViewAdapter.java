@@ -31,7 +31,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     private Context context;
     private String parentActivity;
 
-    //we are going to call this adapter in different activities so you need the context and activity name
+    //to  adapter in different activities so you need the context and activity name
     public BookRecyclerViewAdapter(Context context, String parentActivity) {
         this.context = context;
         this.parentActivity = parentActivity;
@@ -41,7 +41,6 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item_book, parent, false);
-        // ViewHolder holder = new ViewHolder(view);
         return new ViewHolder(view);
     }
 
@@ -51,8 +50,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
 
         holder.textViewBookName.setText(books.get(position).getName());
 
-        //for the images you need the glide library to load images into the image view from the internet
-        //set it as bitmap and load into the card view the save image url
+   //download images from the website using glide
         Glide.with(context)
                 .asBitmap()
                 .load(books.get(position).getImageUrl())
@@ -86,7 +84,8 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
                 holder.textViewDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);         //how to create a dialog box to show message before deleting book
+                        //create a dialog box to display confirmation message before deltetion
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);         
                         builder.setMessage("Are you sure you want to delete " + books.get(position).getName() + "?");
 
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -113,7 +112,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
                 holder.textViewDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);         //show the dialog box to receive confirmation before deleting
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);       
                         builder.setMessage("Are you sure you want to delete " + books.get(position).getName() + "?");
 
                         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -140,15 +139,15 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
                 holder.textViewDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);         //how to create a dialog box to show message before deleting book
-                        builder.setMessage("Are you sure you want to delete " + books.get(position).getName() + "?");       //message in the dialog box
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);    
+                        builder.setMessage("Are you sure you want to delete " + books.get(position).getName() + "?");       
 
-                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {                //yes = positive button; no= negative button
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {               
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if (UtilsDatabase.getInstance(context).removeFromCurrentlyReading(books.get(position))) {
                                     Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
-                                    notifyDataSetChanged();             //notifies that a book has been remove so refresh and reposition
+                                    notifyDataSetChanged();           
                                 }
                             }
                         });
@@ -158,7 +157,7 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
 
                             }
                         });
-                        builder.create().show();             //finally create and shoe the builder
+                        builder.create().show();             
                     }
                 });
 
@@ -167,15 +166,15 @@ public class BookRecyclerViewAdapter extends RecyclerView.Adapter<BookRecyclerVi
                 holder.textViewDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(context);         //how to create a dialog box to show message before deleting book
-                        builder.setMessage("Are you sure you want to delete " + books.get(position).getName() + "?");       //the message
+                        AlertDialog.Builder builder = new AlertDialog.Builder(context);        
+                        builder.setMessage("Are you sure you want to delete " + books.get(position).getName() + "?");     
 
-                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {                //yes = positive button; no= negative button
+                        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {               
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 if (UtilsDatabase.getInstance(context).removeFromFavoriteBooks(books.get(position))) {
                                     Toast.makeText(context, "Book removed", Toast.LENGTH_SHORT).show();
-                                    notifyDataSetChanged();                         //notifies that a book has been remove so refresh and reposition//takes long to update use call back interfaces
+                                    notifyDataSetChanged();                         
                                 }
                             }
                         });
