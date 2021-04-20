@@ -23,6 +23,7 @@ public class SeeAllBooksActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+         //create an instance of the recycler view and RecyclerViewAdapter and set the adapter
         booksRecyclerView = findViewById(R.id.booksRecyclerView);
         adapter = new BookRecyclerViewAdapter(this,"SeeAllBooksActivity");
 
