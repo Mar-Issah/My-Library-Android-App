@@ -1,6 +1,7 @@
 package com.siya.mylibraryrealworld;
 
-public class Book {                     //In java this class is called ; POJO: Plain Old Java Object. it has some field such as a constructor, getters and setters and string method
+//the blueprint for the book
+public class Book {                  
     private int id;
     private String name;
     private String author;
@@ -26,9 +27,10 @@ public class Book {                     //In java this class is called ; POJO: P
         this.imageUrl = imageUrl;
         this.shortDesc = shortDesc;
         this.longDecs = longDecs;
-        isExpanded =false;                      //not going to receive any info but making that anything you create a new book the relative layout is collapsed
+        isExpanded = false;                      // anytime a new book is created, the relative layout is collapsed
     }
 
+    //getters and setters for the book
     public int getId() {
         return id;
     }
@@ -85,8 +87,9 @@ public class Book {                     //In java this class is called ; POJO: P
         this.longDecs = longDecs;
     }
 
+    //take all the variables and return a string with a new format
     @Override
-    public String toString() {                                  //take all the variables and return a string with a new format
+    public String toString() {                                  
         return "Book{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
