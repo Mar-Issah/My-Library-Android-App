@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">My Library</string>
+    <string name="btnAlreadyRead">Already Read Books</string>
+    <string name="textViewMyLibrary">My Library</string>
+    <string name="btnSeeAllBooks">See All Books</string>
+    <string name="btnCurrentlyReading">Currently Reading</string>
+    <string name="btnWishList">My WishList</string>
+    <string name="btnMyFavorites">My Favorites</string>
+    <string name="btnAbout">About</string>
+    <string name="bookName">Book Name</string>
+
+    <string name="buttonAddToCurrReading">Currently Reading</string>
+    <string name="buttonAddWantToRead">Want To Read</string>
+    <string name="buttonAddAlreadyRead">Already Read</string>
+    <string name="buttonAddToFavorites">Add To My Favorites</string>
+
+    <string name="txtViewLaBookName">Book Name :</string>
+    <string name="txtViewLaAuthor">Author :</string>
+    <string name="txtViewLaPages">Pages :</string>
+    <string name="txtViewLaDesc">Description</string>
+    <string name="txtViewDelete">Delete</string>
+    <string name="imageDescription">parent</string>
+    <string name="imageArrowUp">Arrow up</string>
+    <string name="imageArrowDown">Arrow down</string>
+    <string name="imageLibrary">imageLibrary</string>
+    <string name="imageBook">Book Image</string>
+
+
+    <string name="SeeAllBooksActivity"> All Books</string>
+    <string name="BookActivity">Book Details</string>
+    <string name="AlreadyReadBookActivity">Books You Already Read</string>
+    <string name="FavoriteBooksActivity">Favorite Books</string>
+    <string name="WantToReadActivity">Want To Read Activity</string>
+    <string name="CurrentlyReadingActivity">Books You Are Currently Reading</string>
+
+    <string name="include">Developed by Marsiya Issah</string>
+</resources>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parent"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="7dp"
+    app:cardElevation="7dp">
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/collapseRelativeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageViewBook"
+                android:layout_width="180dp"
+                android:layout_height="150dp"
+                android:src="@mipmap/siya_library"
+                android:contentDescription="@string/imageDescription"/>
+
+            <TextView
+                android:id="@+id/textViewBookName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageViewBook"
+                android:layout_marginTop="7dp"
+                android:text="@string/bookName"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/btnDownArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageViewBook"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="7dp"
+                android:src="@drawable/ic_down_arrow"
+                android:contentDescription="@string/imageArrowDown"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/expandableReLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/collapseRelativeLayout"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/textViewAuthor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txtViewLaAuthor" />
+
+            <TextView
+                android:id="@+id/textViewAuthorName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewAuthor"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/textViewShortDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewAuthorName"
+                android:layout_marginTop="7dp"
+                android:textColor="@color/black"/>
+
+            <ImageView
+                android:id="@+id/btnUpArrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewShortDesc"
+                android:layout_alignParentEnd="true"
+                android:src="@drawable/ic_up_arrow"
+                android:contentDescription="@string/imageArrowUp"/>
+
+            <TextView
+                android:id="@+id/textViewDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/textViewShortDesc"
+                android:layout_marginEnd="7dp"
+                android:layout_toStartOf="@id/btnUpArrow"
+                android:text="@string/txtViewDelete"
+                android:textColor="@color/red"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</com.google.android.material.card.MaterialCardView>
